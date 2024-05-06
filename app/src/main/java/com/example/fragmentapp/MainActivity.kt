@@ -1,6 +1,5 @@
 package com.example.fragmentapp
 
-
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -15,17 +14,20 @@ import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity() {
 
-    private val crScp = CoroutineScope(Job() + Dispatchers.Main)
-    private lateinit var retrofit: Retrofit
-    private lateinit var crud: AppCrud
+//    private val crScp = CoroutineScope(Job() + Dispatchers.Main)
+//    private lateinit var retrofit: Retrofit
+//    private lateinit var crud: AppCrud
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
 
-        retrofit = RetrofitClient.create()
-        crud = retrofit.create(AppCrud::class.java)
+//        val app: MyApp = getApplication() as MyApp
+        val app: MyApp = application as MyApp
+
+//        retrofit = RetrofitClient.create()
+//        crud = retrofit.create(AppCrud::class.java)
 
         findViewById<Button>(R.id.button).setOnClickListener {
             val txn = supportFragmentManager.beginTransaction()
@@ -46,9 +48,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun getRetrofit() = retrofit
-
-    fun crudInterface() = crud
-
-    fun coroutineScope() = crScp
+//    fun getRetrofit() = retrofit
+//
+//    fun crudInterface() = crud
+//
+//    fun coroutineScope() = crScp
 }

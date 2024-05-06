@@ -1,4 +1,5 @@
 package com.example.fragmentapp
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,12 +19,14 @@ class CallsFragment : Fragment() {
 //    private lateinit var retrofit: Retrofit
 //    private lateinit var crud: AppCrud
 
-    private lateinit var parentActivity: MainActivity
+//    private lateinit var parentActivity: MainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        parentActivity = activity as MainActivity
+        val app: MyApp = activity?.application as MyApp
+
+//        parentActivity = activity as MainActivity
 
 //        retrofit = RetrofitClient.create()
 //        crud = retrofit.create(AppCrud::class.java)
@@ -42,9 +45,11 @@ class CallsFragment : Fragment() {
         val recWeb = view.findViewById<RecyclerView>(R.id.recWeb)
         recWeb.layoutManager = LinearLayoutManager(recWeb.context)
 
-        parentActivity.coroutineScope().launch {
+        val app: MyApp = activity?.application as MyApp
 
-            val apps: List<App>? = parentActivity.crudInterface().apps().body()
+        app.coroutineScope().launch {
+
+            val apps: List<App>? = app.crudInterface().apps().body()
 
             apps?.let {
                 println(apps)
