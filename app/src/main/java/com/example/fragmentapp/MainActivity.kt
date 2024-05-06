@@ -1,16 +1,21 @@
 package com.example.fragmentapp
 
+
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import retrofit2.Retrofit
 
 
 class MainActivity : AppCompatActivity() {
 
+    private val crScp = CoroutineScope(Job() + Dispatchers.Main)
     private lateinit var retrofit: Retrofit
     private lateinit var crud: AppCrud
 
@@ -40,4 +45,10 @@ class MainActivity : AppCompatActivity() {
             txn.commit()
         }
     }
+
+    fun getRetrofit() = retrofit
+
+    fun crudInterface() = crud
+
+    fun coroutineScope() = crScp
 }
